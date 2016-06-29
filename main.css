@@ -1,4 +1,5 @@
-#homework-checklist{
+#to-do-list{
+	display: block;
 	margin-top: 10px;
 	border: 2px solid #000000;
 	border-radius: 12px;
@@ -15,15 +16,10 @@
 .front,.back{
 	padding-top: 60px;
 	text-align: center;
-	font-size: 50px;
-}
-
-form {
-    display: inline-block;
+	font-size: 40px;
 }
 
 #button{
-    display: inline-block;
     height:20px;
 	width:70px;
 	background-color:#cc0000;
@@ -35,7 +31,7 @@ form {
 	margin-top:2px;
 }
 
-#to-do-list{
+#takenote{
 	margin-top: 20px;
 }
 
@@ -50,3 +46,7 @@ label{
 	display: block;
 }
 
+.myCheckBox{
+	text-align: center;
+	font-size: 25px;
+}

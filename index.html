@@ -12,6 +12,7 @@
     <link rel="stylesheet" type="text/css" href="css/simple-sidebar.css"/>
     <link rel="stylesheet" type="text/css" href="css/textarea.css"/>
     <link rel="stylesheet" type="text/css" href="css/weather.css"/>
+	<link rel="stylesheet" type="text/css" href="css/slider.css"/>
     <link rel="stylesheet" type="text/css" href="main.css"/>
 
     <!-- jQuery & JS (jquery must be put before bootstrap js -->
@@ -115,28 +116,99 @@
 	
 	<div class = "container-fluid">
 	  <div class = "row">
-	    <div id = "to-do-list" class = "col-sm-4">
+	    <div id = "takenote" class = "col-sm-6">
 	      <form role = "form">
+			<div class = "form-group">
+			  <textarea class = "form-control resize-vertical" rows = "3" cols = "50" placeholder = "Take a note..."></textarea>
+			</div>
 
-		<div class = "form-group">
-		  <textarea class = "form-control resize-vertical" rows = "3" cols = "40" placeholder = "Take a note..."></textarea>
-		</div>
-
-		<div id="add-to-list" class="btn btn-info">Add!</div>
+			<div id="add-to-list" class="btn btn-info">Add!</div>
 	      </form>
 	    </div>
-	  </div>
+		
+		<div id = "to-do-list" class = "col-sm-6">
+			<h3 style ="text-align: center;">To-do-list</h3>
+				<div class = "panel-group">
+				</div>
+			</div>
+		</div>
 	</div>
 	
-	<div class = "container-fluid">
-	  <div class = "row">
-	    <div id = "homework-checklist" class = "col-sm-6">
-	      <h3>Homework-Checklist</h3>
-	      <div class = "panel-group">
-	      </div>
-	    </div>
-	  </div>
-	</div>
+	<!-- FLASHCARDS -->
+	<div class="slider">
+      <div class="slide active-slide">
+        <div class="container">
+          <div class="row">
+				<div id = "flashcards">
+					<div class = "front">
+						Random flashcard 1
+					</div>
+					<div class = "back">
+						what is this
+					</div>
+				</div>
+          </div>
+        </div>      
+      </div>
+
+      <div class="slide">
+        <div class="container">
+          <div class="row">
+				<div id = "flashcards">
+					<div class = "front">
+						Random flashcard 1
+					</div>
+					<div class = "back">
+						what is this
+					</div>
+				</div>
+          </div>
+        </div>      
+      </div>
+
+      <div class="slide">
+        <div class="container">
+          <div class="row">
+				<div id = "flashcards">
+					<div class = "front">
+						Random flashcard 1
+					</div>
+					<div class = "back">
+						what is this
+					</div>
+				</div>
+          </div>
+        </div>      
+      </div>
+
+
+      <div class="slide">
+        <div class="container">
+          <div class="row">
+				<div id = "flashcards">
+					<div class = "front">
+						Random flashcard 1
+					</div>
+					<div class = "back">
+						what is this
+					</div>
+				</div>
+          </div>
+        </div>      
+      </div>
+
+    </div>
+
+    <div class="slider-nav">
+      <a href="#" class="arrow-prev"><img src="http://s3.amazonaws.com/codecademy-content/courses/ltp2/img/flipboard/arrow-prev.png"></a>
+      <ul class="slider-dots">
+        <li class="dot active-dot">&bull;</li>
+        <li class="dot">&bull;</li>
+        <li class="dot">&bull;</li>
+        <li class="dot">&bull;</li>
+      </ul>
+      <a href="#" class="arrow-next"><img src="http://s3.amazonaws.com/codecademy-content/courses/ltp2/img/flipboard/arrow-next.png"></a>
+    </div> 
 	
 	<div class = "container-fluid">
 	  <div class = "row">
@@ -153,6 +225,7 @@
 	  </div>
 	</div>
 
+
     
 	<div class = "container-fluid">
 	  <div class = "row">
@@ -163,6 +236,7 @@
       </div>
     </div>
     <!-- Must be placed at the end of the body to work -->
+	<script type="text/javascript" src="js/slider.js"></script>
     <script type="text/javascript" src="js/checklist.js"></script>
     <script type="text/javascript" src="js/sidebar.js"></script>
     <script type="text/javascript" src="js/weather.js"></script>
