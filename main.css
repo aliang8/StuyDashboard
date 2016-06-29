@@ -21,7 +21,11 @@ form {
 	margin-top:2px;
 }
 
-.list {
-	font-family:garamond;
-	color:#cc0000;
+#to-do-list{
+	margin-top: 20px;
+}
+
+textarea {
+	border-width: 1px;
+	font-size: 20px;
 }
