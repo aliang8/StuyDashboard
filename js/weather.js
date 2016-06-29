@@ -2,7 +2,7 @@
 //Docs at http://simpleweatherjs.com
 $(document).ready(function() {
   $.simpleWeather({
-    location: 'Austin, TX',
+    location: 'Manhattan, NY',
     woeid: '',
     unit: 'f',
     success: function(weather) {
