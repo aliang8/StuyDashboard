@@ -6,8 +6,8 @@ $(document).ready(function(){
     $('#add-to-list').click(function(){
 	if (!isEmpty($('textarea'))) {
             var toAdd = $('textarea').val();
-            $('.panel-group').append('<div class="panel panel-default"><div class="panel-heading">' 
-				     + toAdd + '</div><div class="panel-body">' + toAdd + '</div></div>');
+            $('.panel-group').append('<div class="panel panel-default"><div class="panel-body"><label><input type = "checkbox" value = "' 
+			+ toAdd + '">' + toAdd + '</label></div></div>');
 	}
     });
     $('#add-to-list').click(function(){
@@ -24,6 +24,9 @@ $(document).ready(function(){
     // 	}
     // });
     $(document).on('click','label',function(){
+        $(this).remove();
+    });
+	$(document).on('click','.panel-default',function(){
         $(this).remove();
     });
 });

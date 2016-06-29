@@ -37,6 +37,6 @@ label{
 	display: block;
 }
 
-#checkbox{
-	background-color: blue;
+.panel-group{
+	margin-top: 10px;
 }
