@@ -10,6 +10,7 @@
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
     <link rel="stylesheet" type="text/css" href="css/simple-sidebar.css"/>
+    <link rel="stylesheet" type="text/css" href="css/textarea.css"/>
     <link rel="stylesheet" type="text/css" href="main.css"/>
 
     <!-- jQuery & JS (jquery must be put before bootstrap js -->
@@ -108,10 +109,12 @@
 				<div id = "to-do-list" class = "col-sm-4">
 					<form role = "form">
 						<div class = "form-group">
-							<textarea class = form-control" rows = "2" cols = "40" placeholder = "Take a note...">Take a note..</textarea>
+							<textarea class = "form-control resize-vertical" rows = "3" cols = "40" placeholder = "Take a note..."></textarea>
 						</div>
+					<div class="btn btn-info" id="add-to-list">Add!</div>
+
 					</form>
-					<div id="button">DONE</div>
+
 				</div>
 			</div>
 		</div>
@@ -134,7 +137,7 @@
     </div>
 
     <!-- Must be placed at the end of the body to work -->
-	<script type="text/javascript" src="js/script.js"></script>
+    <script type="text/javascript" src="js/script.js"></script>
     <script type="text/javascript" src="js/sidebar.js"></script>
 
   </body>
