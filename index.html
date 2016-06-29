@@ -15,6 +15,8 @@
     <link rel="stylesheet" type="text/css" href="main.css"/>
 
     <!-- jQuery & JS (jquery must be put before bootstrap js -->
+	<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+	<script src="https://cdn.rawgit.com/nnattawat/flip/master/dist/jquery.flip.min.js"></script>
     <script type="text/javascript" src="js/jquery/jquery.min.js"></script>
     <script type="text/javascript" src="js/simpleWeather/jquery.simpleWeather.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
@@ -125,37 +127,38 @@
 	    </div>
 	  </div>
 	</div>
-
 	
 	<div class = "container-fluid">
-	  <div class = "row">
-	    <div id = "homework-checklist" class = "col-sm-6">
-
-	      <h3>Homework-Checklist</h3>
-
-	      <div class = "list">
-		<div class = "panel-group">
-
-		  <div class = "panel panel-default">
-		    <div class = "panel-body"><label><input type = "checkbox" value = "Math">Math</label></div>
-		  </div>
-
-		  <div class = "panel panel-default">
-		    <div class = "panel-body"><label><input type = "checkbox" value = "Math">Math</label></div>
-		  </div>
-
+			<div class = "row">
+				<div id = "homework-checklist" class = "col-sm-6">
+					<h3>Homework-Checklist</h3>
+						<div class = "panel-group">
+						</div>
+				</div>
+			</div>
 		</div>
-	      </div>
+		
+		<div class = "container-fluid">
+			<div class = "row">
+				<div id = "flashcards">
+					<div class = "front">
+						Random flashcard asdfsdfadfsafasfdsf
+						<!--<span class="glyphicon glyphicon-share-alt"></span>-->
+					</div>
+					<div class = "back">
+						what is this
+						<!--<span class="glyphicon glyphicon-share-alt"></span>-->
+					</div>
+				</div>
+			</div>
+		</div>
 
-	    </div>
-	  </div>
-	</div>
     
-	<div class = "container-fluid">
-	  <div class = "row">
-	    <div id = "weather"></div>
-	  </div>
-	</div>
+		<div class = "container-fluid">
+		  <div class = "row">
+			<div id = "weather"></div>
+		  </div>
+		</div>
 
       </div>
     </div>
