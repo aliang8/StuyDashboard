@@ -3,11 +3,12 @@ function isEmpty(element) {
 }
 
 $(document).ready(function(){
-	$('#add-to-list').click(function(){
+    $('#add-to-list').click(function(){
 	if (!isEmpty($('textarea'))) {
-        var toAdd = $('textarea').val();
-        $('.panel-group').append('<div class="panel panel-default"><div class="panel-heading">' 
-		+ toAdd + '</div><div class="panel-body">' + toAdd + '</div></div>');
+            var toAdd = $('textarea').val();
+            $('.panel-group').append('<div class="panel panel-default"><div class="panel-heading">' 
+				     + toAdd + '</div><div class="panel-body">' + toAdd + '</div></div>');
+	}
     });
     $('#add-to-list').click(function(){
 	if (!isEmpty($('textarea'))) {
