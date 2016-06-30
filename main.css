@@ -6,19 +6,6 @@
 	padding: 10px;
 }
 
-#flashcards{
-	margin-top: 30px;
-	width: 500px;
-	height: 300px;
-	border: 1px solid #000000;
-}
-
-.front,.back{
-	padding-top: 60px;
-	text-align: center;
-	font-size: 40px;
-}
-
 #button{
     height:20px;
 	width:70px;

@@ -18,9 +18,6 @@ $(document).ready(function(){
     // 			      + toAdd + '">' + toAdd + '</label>');
     // 	}
     // });
-    $(document).on('click','label',function(){
-        $(this).remove();
-    });
 	$(document).on('click','.panel-default',function(){
         $(this).remove();
     });
