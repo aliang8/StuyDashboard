@@ -15,12 +15,11 @@
 
 #new-flashcards{
 	font-size: 20px;
+	margin-top: 20px;
 }
 
-.slider {
-  position: relative;
-  width: 500px;
-  height: 300px;
+#make-flashcard{
+	margin-bottom: 20px;
 }
 
 .slide {
@@ -36,9 +35,4 @@
 
 .active-slide {
     display: block;
-}
-
-.slider-nav {
-  text-align: center;
-  margin-top: 210px;
 }
