@@ -7,10 +7,16 @@
 	border: 1px solid #000000;
 }
 
-.front,.back{
+.front {
 	padding-top: 60px;
 	text-align: center;
 	font-size: 40px;
+}
+
+.back {
+    padding-top: 60px;
+    text-align: center;
+    font-size: 40px;
 }
 
 #new-flashcards{
@@ -22,7 +28,7 @@
 	margin-bottom: 20px;
 }
 
-.slide {
+.flip-container {
   background: transparent url('http://s3.amazonaws.com/codecademy-content/courses/ltp2/img/flipboard/feature-gradient-transparent.png') center center no-repeat;
   background-size: cover;
   display: none;

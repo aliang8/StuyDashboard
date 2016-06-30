@@ -37,3 +37,7 @@ label{
 	text-align: center;
 	font-size: 25px;
 }
+
+.resize-vertical {
+    resize: vertical;
+}
