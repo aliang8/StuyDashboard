@@ -41,13 +41,46 @@ var getMonthName = function(month) {
     }
 }
 
+var fixDays = function(monthNum){
+	if(monthNum == 1){
+		$('.days li').each(function(){
+			if($(this).text() == 29 || $(this).text() == 30 || $(this).text() == 31){
+				$(this).hide();
+			} 
+		});
+	} else if(monthNum == 3 || monthNum == 5 || monthNum == 8 || monthNum == 10){
+		$('.days li').each(function(){
+			if($(this).text() == 31){
+				$(this).hide();
+			} 
+			if($(this).text() == 29 || $(this).text() == 30){
+				$(this).show();
+			} 
+		});
+	} else {
+		$('.days li').each(function(){
+			if($(this).text() == 29 || $(this).text() == 30 || $(this).text() == 31){
+				$(this).show();
+			} 
+		});
+	}
+}
+
 $(document).ready(function(){
     var d = new Date();
     var monthNum = d.getMonth();
     getMonthName(monthNum);
     var currentYear = d.getFullYear();
+	var currentDate = d.getDate();
     $('.m').html(currentMonth);
     $('.y').html(currentYear);
+	console.log(monthNum == 7);
+	$('.days li').each(function(){
+		if($(this).text() == currentDate){
+			$(this).html('<span class = "active">' + currentDate + '</span>')
+		}
+	});
+	fixDays(monthNum);
     $(document).on("click", ".prev", function(){
 	monthNum -= 1;
 	if (monthNum == -1) {
@@ -55,6 +88,7 @@ $(document).ready(function(){
 	    currentYear -= 1;
 	}
 	getMonthName(monthNum);
+	fixDays(monthNum);
 	$('.m').html(currentMonth);
 	$('.y').html(currentYear);
     });
@@ -65,6 +99,7 @@ $(document).ready(function(){
 	    currentYear += 1;
 	}
 	getMonthName(monthNum);
+	fixDays(monthNum);
 	$('.m').html(currentMonth);
 	$('.y').html(currentYear);
     });
