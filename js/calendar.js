@@ -1,118 +1,147 @@
-var currentMonth;
-
-var getMonthName = function(month) {
+function getMonthName(month) {
+    var monthName = "";
     switch(month){
     case 0:
-	currentMonth = "January";
+	monthName = "January";
 	break;
     case 1:
-	currentMonth = "February"
+	monthName = "February";
 	break;
     case 2:
-	currentMonth = "March"
+	monthName = "March";
 	break;
     case 3:
-	currentMonth = "April"
+	monthName = "April";
 	break;
     case 4:
-	currentMonth = "May"
+	monthName = "May";
 	break;
     case 5:
-	currentMonth = "June"
+	monthName = "June";
 	break;
     case 6:
-	currentMonth = "July"
+	monthName = "July";
 	break;
     case 7:
-	currentMonth = "August"
+	monthName = "August";
 	break;
     case 8:
-	currentMonth = "September"
+	monthName = "September";
 	break;
     case 9:
-	currentMonth = "October"
+	monthName = "October";
 	break;
     case 10:
-	currentMonth = "November"
+	monthName = "November";
 	break;
     case 11:
-	currentMonth = "December"
+	monthName = "December";
 	break;
+    }
+    return monthName;
+}
+
+function fixDays(monthNum){
+    if(monthNum == 1){
+	$('.days li').each(function(){
+	    if($(this).text() >= 29){
+		$(this).hide();
+	    } 
+	});
+    } else if(monthNum == 3 || monthNum == 5 || monthNum == 8 || monthNum == 10){
+	$('.days li').each(function(){
+	    if($(this).text() == 31){
+		$(this).hide();
+	    } 
+	    if($(this).text() == 29 || $(this).text() == 30){
+		$(this).show();
+	    } 
+	});
+    } else {
+	$('.days li').each(function(){
+	    if($(this).text() >= 29){
+		$(this).show();
+	    } 
+	});
     }
 }
 
-var fixDays = function(monthNum){
-	if(monthNum == 1){
-		$('.days li').each(function(){
-			if($(this).text() == 29 || $(this).text() == 30 || $(this).text() == 31){
-				$(this).hide();
-			} 
-		});
-	} else if(monthNum == 3 || monthNum == 5 || monthNum == 8 || monthNum == 10){
-		$('.days li').each(function(){
-			if($(this).text() == 31){
-				$(this).hide();
-			} 
-			if($(this).text() == 29 || $(this).text() == 30){
-				$(this).show();
-			} 
-		});
-	} else {
-		$('.days li').each(function(){
-			if($(this).text() == 29 || $(this).text() == 30 || $(this).text() == 31){
-				$(this).show();
-			} 
-		});
+function alignDates(year,month){
+    var firstDay = new Date(year,month,1);
+    $('.days li').each(function(){
+	if($(this).text() == ""){
+	    $(this).remove();
 	}
+    });
+    if (firstDay.getDay() != 0) {
+	for(i = 0; i < firstDay.getDay(); i++){
+	    $('.days').prepend("<li></li>");
+	}
+    }
 }
 
-var alignDates = function(year,month){
-	var firstDay = new Date(year,month,1);
-	$('.days li').each(function(){
-		if($(this).text() == ""){
-			$(this).remove();
-		}
-	});
-	for(i = -1; i < firstDay.getDay(); i++){
-		$('.days').prepend("<li></li>");
-	}
+function weekdays() {
+    var dayTags = "<li>Su</li>\n" +
+	    "<li>Mo</li>\n" +
+	    "<li>Tu</li>\n" +
+	    "<li>We</li>\n" + 
+	    "<li>Th</li>\n" +
+	    "<li>Fr</li>\n" +
+            "<li>Sa</li>\n"
+    return dayTags;
+}
+
+function numDays() {
+    var numTags = "";
+    for (i = 1; i <= 31; i++) {
+	numTags += "<li>" + i.toString() + "</li>\n";
+    }
+    return numTags;
+}
+
+function displayDays() {    
+    $('.weekdays').append(weekdays());
+    $('.days').append(numDays());
 }
 
 $(document).ready(function(){
     var d = new Date();
     var monthNum = d.getMonth();
-    getMonthName(monthNum);
     var currentYear = d.getFullYear();
-	var currentDate = d.getDate();
+    var currentDate = d.getDate();
+    var currentMonth = getMonthName(monthNum);
     $('.m').html(currentMonth);
     $('.y').html(currentYear);
-	console.log(monthNum == 7);
-	$('.days li').each(function(){
-		if($(this).text() == currentDate){
-			$(this).html('<span class = "active">' + currentDate + '</span>')
-		}
-	});
-	fixDays(monthNum);
-	alignDates(currentYear,monthNum);
+    displayDays();
+
+    $('.days li').each(function(){
+	if($(this).text() == currentDate){
+	    $(this).html('<span class = "active">' + currentDate + '</span>')
+	}
+    });
+    fixDays(monthNum);
+    alignDates(currentYear, monthNum);
+
     $(document).on("click", ".prev", function(){
 	monthNum -= 1;
 	if (monthNum == -1) {
 	    monthNum = 11;
 	    currentYear -= 1;
 	}
-	getMonthName(monthNum);
+	currentMonth = getMonthName(monthNum);
 	fixDays(monthNum);
 	alignDates(currentYear,monthNum);
 	$('.m').html(currentMonth);
 	$('.y').html(currentYear);
     });
+
     $(document).on("click", ".next", function() {
 	monthNum += 1;
 	if (monthNum == 12) {
 	    monthNum = 0;
 	    currentYear += 1;
 	}
-	getMonthName(monthNum);
+	currentMonth = getMonthName(monthNum);
 	fixDays(monthNum);
 	alignDates(currentYear,monthNum);
 	$('.m').html(currentMonth);
