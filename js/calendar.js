@@ -66,20 +66,6 @@ function fixDays(monthNum){
     }
 }
 
-function alignDates(year,month){
-    var firstDay = new Date(year,month,1);
-    $('.days li').each(function(){
-	if($(this).text() == ""){
-	    $(this).remove();
-	}
-    });
-    if (firstDay.getDay() != 0) {
-	for(i = 0; i < firstDay.getDay(); i++){
-	    $('.days').prepend("<li></li>");
-	}
-    }
-}
-
 function weekdays() {
     var dayTags = "<li>Su</li>\n" +
 	    "<li>Mo</li>\n" +
@@ -91,17 +77,35 @@ function weekdays() {
     return dayTags;
 }
 
-function numDays() {
+function numDays(year, month) {
     var numTags = "";
+    var firstDay = new Date(year, month, 1);
+    // getDay() returns 0 if the day is Sunday, so we make sure that
+    // we do not prepend a placeholder if the day is Sunday
+    // Otherwise, there would be an extra <li> prepended, messing up
+    // the layout of the calendar
+    if (firstDay.getDay() != 0) {
+	for(i = 0; i < firstDay.getDay(); i++) { 
+	    numTags += "<li></li>\n";
+	}
+    }
     for (i = 1; i <= 31; i++) {
 	numTags += "<li>" + i.toString() + "</li>\n";
     }
     return numTags;
 }
 
-function displayDays() {    
+function displayDays(year, month) {    
     $('.weekdays').append(weekdays());
-    $('.days').append(numDays());
+    $('.days').append(numDays(year, month));
+}
+
+function activeDay(date) {
+    $('.days li').each(function(){
+	if ($(this).text() == date){
+	    $(this).html('<span class = "active">' + date + '</span>')
+	}
+    });
 }
 
 $(document).ready(function(){
@@ -112,38 +116,38 @@ $(document).ready(function(){
     var currentMonth = getMonthName(monthNum);
     $('.m').html(currentMonth);
     $('.y').html(currentYear);
-    displayDays();
-
-    $('.days li').each(function(){
-	if($(this).text() == currentDate){
-	    $(this).html('<span class = "active">' + currentDate + '</span>')
-	}
-    });
+    displayDays(currentYear, monthNum);
     fixDays(monthNum);
-    alignDates(currentYear, monthNum);
+    activeDay(currentDate);
 
     $(document).on("click", ".prev", function(){
+	$('.weekdays').empty();
+	$('.days').empty();
 	monthNum -= 1;
 	if (monthNum == -1) {
 	    monthNum = 11;
 	    currentYear -= 1;
 	}
+	displayDays(currentYear, monthNum);
+	activeDay(currentDate);
 	currentMonth = getMonthName(monthNum);
 	fixDays(monthNum);
-	alignDates(currentYear,monthNum);
 	$('.m').html(currentMonth);
 	$('.y').html(currentYear);
     });
 
     $(document).on("click", ".next", function() {
+	$('.weekdays').empty();
+	$('.days').empty();
 	monthNum += 1;
 	if (monthNum == 12) {
 	    monthNum = 0;
 	    currentYear += 1;
 	}
+	displayDays(currentYear, monthNum);
+	activeDay(currentDate);
 	currentMonth = getMonthName(monthNum);
 	fixDays(monthNum);
-	alignDates(currentYear,monthNum);
 	$('.m').html(currentMonth);
 	$('.y').html(currentYear);
     });

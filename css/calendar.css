@@ -3,8 +3,8 @@ body {font-family: Verdana, sans-serif;}
 
 /* Month header */
 .month {
-	width: 600px;
-	height: 125px;
+    width: 600px;
+    height: 125px;
     padding: 25px 25px;
     background: #1abc9c;
 }
@@ -20,12 +20,12 @@ body {font-family: Verdana, sans-serif;}
     font-size: 30px;
     text-transform: uppercase;
     letter-spacing: 10px;
-	text-align: center;
+    text-align: center;
 }
 
 .month .y{
-	margin-top: 10px;
-	font-size: 18px;
+    margin-top: 10px;
+    font-size: 18px;
 }
 
 /* Previous button inside month header */
@@ -44,8 +44,8 @@ body {font-family: Verdana, sans-serif;}
 
 /* Weekdays (Mon-Sun) */
 .weekdays {
-	width: 600px;
-	height: 50px;
+    width: 600px;
+    height: 50px;
     margin: 0;
     padding: 10px 0;
     background-color:#ddd;
@@ -55,15 +55,14 @@ body {font-family: Verdana, sans-serif;}
     display: inline-block;
     width: 13.57%;
     color: #666;
-	font-size: 20px;
+    font-size: 20px;
     text-align: center;
 }
 
 /* Days (1-31) */
 .days {
-	width: 600px;
-	height: 100%;
-    padding-top: 0 0 25px 0; /* top right bottom left */
+    width: 600px;
+    height: 100%;
     background: #eee;
     margin: 0;
     -webkit-padding-start: 0px; /* overrides user agent stylesheet */
@@ -73,7 +72,7 @@ body {font-family: Verdana, sans-serif;}
     list-style-type: none;
     display: inline-block;
     width: 13.57%;
-	height: 15%;
+    height: 15%;
     text-align: center;
     padding-top: 20px;
     margin-bottom: 20px;
@@ -84,13 +83,9 @@ body {font-family: Verdana, sans-serif;}
 /* Highlight the "current" day */
 .days li .active {
     padding-top: 19px;
-	padding-left: 30px;
-	padding-right: 30px;
-	padding-bottom: 19px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-bottom: 19px;
     background: #1abc9c;
     color: white;
-}
-
-.invisible-date {
-    visibility: hidden;
 }
