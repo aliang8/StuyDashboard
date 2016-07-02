@@ -66,6 +66,18 @@ var fixDays = function(monthNum){
 	}
 }
 
+var alignDates = function(year,month){
+	var firstDay = new Date(year,month,1);
+	$('.days li').each(function(){
+		if($(this).text() == ""){
+			$(this).remove();
+		}
+	});
+	for(i = -1; i < firstDay.getDay(); i++){
+		$('.days').prepend("<li></li>");
+	}
+}
+
 $(document).ready(function(){
     var d = new Date();
     var monthNum = d.getMonth();
@@ -81,6 +93,7 @@ $(document).ready(function(){
 		}
 	});
 	fixDays(monthNum);
+	alignDates(currentYear,monthNum);
     $(document).on("click", ".prev", function(){
 	monthNum -= 1;
 	if (monthNum == -1) {
@@ -89,6 +102,7 @@ $(document).ready(function(){
 	}
 	getMonthName(monthNum);
 	fixDays(monthNum);
+	alignDates(currentYear,monthNum);
 	$('.m').html(currentMonth);
 	$('.y').html(currentYear);
     });
@@ -100,6 +114,7 @@ $(document).ready(function(){
 	}
 	getMonthName(monthNum);
 	fixDays(monthNum);
+	alignDates(currentYear,monthNum);
 	$('.m').html(currentMonth);
 	$('.y').html(currentYear);
     });
