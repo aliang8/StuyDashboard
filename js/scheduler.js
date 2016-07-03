@@ -1,9 +1,22 @@
 $(document).ready(function(){
-	$('.periods').click(function(){
-		$('.periods').keypress(function(event)){
+	$('.period').click(function(){
+		$('.period').keypress(function(event){
 			if(event.which == 13){
-				$('.glyphicon').hide();
+				$("tbody tr textarea").each(function(){
+					console.log($(this).val());
+				});
 			}
+		});
+	});
+	$('#set-schedule').click(function(){
+		$("tbody tr").each(function(){
+			$(':nth-child(2)',this).html($('tbody tr textarea').val());
+		});
+	});
+	$('#edit-schedule').click(function(){
+		$("tbody tr").each(function(){
+			$(':nth-child(2)',this).html('<textarea class="period">' 
+			+ $(':nth-child(2)',this).html() + '</textarea>');
 		});
 	});
 });
