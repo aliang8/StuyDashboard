@@ -8,6 +8,7 @@
     <title>StuyDashboard</title>
 
     <!-- CSS -->
+
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
     <link rel="stylesheet" type="text/css" href="css/simple-sidebar.css"/>
     <link rel="stylesheet" type="text/css" href="css/weather.css"/>
@@ -20,7 +21,7 @@
 
     <!-- jQuery & JS (jquery must be put before bootstrap js -->
     <script type="text/javascript" src="js/jquery/jquery.min.js"></script>
-	
+	<script src="http://code.highcharts.com/highcharts.js"></script>
     <script type="text/javascript" src="js/simpleWeather/jquery.simpleWeather.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/calendar.js"></script>
@@ -241,13 +242,17 @@
 	
       </div>
     </div>
+	
+	
+	<div id="container" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+	
     <!-- Must be placed at the end of the body to work -->
     <script type="text/javascript" src="js/weather.js"></script>
     <script type="text/javascript" src="js/checklist.js"></script>
     <script type="text/javascript" src="js/sidebar.js"></script>
     <script type="text/javascript" src="js/flip.js"></script>
 	<script type="text/javascript" src="js/scheduler.js"></script>
-
+	<script type="text/javascript" src="js/charts.js"></script>
   </body>
 
 </html>
