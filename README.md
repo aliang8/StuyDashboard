@@ -1,14 +1,15 @@
 # StuyDashboard
 A dashboard customized for Stuyvesant students
   
-## To-do list for StuyDashboard
-- [ ] Homework reminder [customize]
-- [ ] Weather report [customize]
+## To-do list for StuyDashboard v1.0
+- [X] Homework reminder
+- [ ] Weather report [not always reliable]
 - [ ] Class/locker exchange (how wld this work?)
-- [ ] Flashcards [in progress]
-- [ ] Schedule/calendar 
+- [X] Flashcards
+- [ ] Schedule/calendar [in progress]
 - [ ] Graphs/diagrams for academic stats
 - [ ] Sports stats
+- [ ] Stress relieving game
 
 ## Possible additions
 * Calculator
