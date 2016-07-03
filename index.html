@@ -15,9 +15,12 @@
     <link rel="stylesheet" type="text/css" href="css/flip.css"/>
     <link rel="stylesheet" type="text/css" href="css/slider.css"/>
     <link rel="stylesheet" type="text/css" href="css/main.css"/>
+	<link rel="stylesheet" type="text/css" href="css/scheduler.css"/>
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 
     <!-- jQuery & JS (jquery must be put before bootstrap js -->
     <script type="text/javascript" src="js/jquery/jquery.min.js"></script>
+	
     <script type="text/javascript" src="js/simpleWeather/jquery.simpleWeather.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/calendar.js"></script>
@@ -197,7 +200,35 @@
 	  <ul class="days"> 
 	  </ul>
 	</div>
-
+	
+	<!--Scheduler-->
+	<div class="container">
+	  <h2>Scheduler          <span class="glyphicon glyphicon-plus"></span></h2> 
+	  <table class="table table-bordered">
+		<thead>
+		  <tr>
+			<th style = "width: 100px"><span style = "font-size: 20px;">#</th>
+			<th><span style = "font-size: 20px;">Periods</th>
+			<th><span style = "font-size: 20px;">Time</th>
+		  </tr>
+		</thead>
+		<tbody>
+			<tr><td>Before school</td><td><textarea class="period"></textarea></td><td>12:00a - 8:00a</td></tr>
+			<tr><td>1</td><td><textarea class="period"></textarea></td><td>8:00a - 8:41a</td></tr>
+			<tr><td>2</td><td><textarea class="period"></textarea></td><td>8:45a - 9:26a</td></tr>
+			<tr><td>3</td><td><textarea class="period"></textarea></td><td>9:31a - 10:15a</td></tr>
+			<tr><td>4</td><td><textarea class="period"></textarea></td><td>10:20a - 11:01a</td></tr>
+			<tr><td>5</td><td><textarea class="period"></textarea></td><td>11:06a - 11:47a</td></tr>
+			<tr><td>6</td><td><textarea class="period"></textarea></td><td>11:52a - 12:33p</td></tr>
+			<tr><td>7</td><td><textarea class="period"></textarea></td><td>12:38p - 1:19p</td></tr>
+			<tr><td>8</td><td><textarea class="period"></textarea></td><td>1:24p - 2:05p</td></tr>
+			<tr><td>9</td><td><textarea class="period"></textarea></td><td>2:09p - 2:50p</td></tr>
+			<tr><td>10</td><td><textarea class="period"></textarea></td><td>2:54p - 3:35p</td></tr>
+			<tr><td>After school</td><td><textarea class="period"></textarea></td><td>3:35p - 11:59p</td></tr>
+		</tbody>
+	  </table>
+	</div>
+		
 	
 	<!--WEATHER PLUGIN-->
 	<div class = "container-fluid">
@@ -213,6 +244,7 @@
     <script type="text/javascript" src="js/checklist.js"></script>
     <script type="text/javascript" src="js/sidebar.js"></script>
     <script type="text/javascript" src="js/flip.js"></script>
+	<script type="text/javascript" src="js/scheduler.js"></script>
 
   </body>
 

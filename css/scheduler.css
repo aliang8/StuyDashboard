@@ -1,0 +1,16 @@
+.glyphicon{
+	font-size: 21px;
+}
+
+.period{
+    border: none;
+    background-color: transparent;
+    resize: none;
+    outline: none;
+	overflow: hidden;
+	font-size: 18px;
+	width: 100%;
+	height: 20px;
+	padding: 0;
+	margin: 0;
+}
