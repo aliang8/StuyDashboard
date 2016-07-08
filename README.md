@@ -9,7 +9,7 @@ A dashboard customized for Stuyvesant students
 - [ ] Schedule/calendar [in progress]
 - [ ] Graphs/diagrams for academic stats
 - [ ] Sports stats
-- [ ] Stress relieving game
+- [ ] Stress relieving game (ideas include: chinese checkers, shooting stick figure game)
 
 ## Possible additions
 * Calculator
