@@ -1,5 +1,6 @@
 function draw() {
       var canvas = document.getElementById("canvas");
+	  canvas.addEventListener( "keypress", makeTurn, false )
       if (canvas.getContext) {
           var ctx = canvas.getContext("2d");
 	  // Yellow board
@@ -35,4 +36,12 @@ function draw() {
 	      }
 	  }
       }
+}
+
+function newTurn(event){
+	if(event.keyCode == 13){
+		ctx.beginPath();
+		ctx.arc(60,60,42,0,2*Math.PI,false);
+		ctx.fillStyle = "#ff0000";
+	}
 }
