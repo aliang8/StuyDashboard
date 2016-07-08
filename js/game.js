@@ -142,7 +142,7 @@ KEY PRESSES
     // Since we already know that 49 <= e.keycode <= 55
     // Multiply result of (keycode - 48) should produce a range of 100 - 700
     // Subtract by 40 to get one of 7 possible x values for the columns
-    function calculateChipXCoord(keycode) {
+    function calculateChipXCoord(keyCode) {
 	return (keyCode - 48) * 100 - 40;
     }
 
