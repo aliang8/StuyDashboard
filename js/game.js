@@ -37,9 +37,9 @@ if (canvas.getContext) {
     // Array of chips
     var chipArray = [];
 
-/* =========================================
-ANIMATION
-========================================= */
+    /* ============================================
+       ANIMATION
+       ========================================= */
 
     // runs once
     function setup() {
@@ -111,6 +111,7 @@ ANIMATION
 	ctx.beginPath();
 	ctx.arc(chip.x, chip.y, chip.radius, 0, Math.PI*2, false);
 	ctx.closePath();
+
 	ctx.stroke();
 
 	// add color to chip piece
@@ -120,9 +121,9 @@ ANIMATION
 	ctx.restore();
     }
 
-/* =========================================
-KEY PRESSES
-========================================= */
+    /* ============================================
+       KEY EVENTS
+       ========================================= */
 
     // when a key is pressed, check if number key
     document.body.addEventListener('keydown', function(e) {
@@ -133,7 +134,7 @@ KEY PRESSES
 	// if number keys pressed, add new piece to chip array
 	if (e.keyCode >= 49 && e.keyCode <= 55){
 	    alert("Number keys pressed");
-	    chipArray.push(new ChipPiece(calculateChipXCoord(e.keycode), 60, 42));
+	    chipArray.push(new ChipPiece(calculateChipXCoord(e.keyCode), 60, 42));
 	}
     }
 
