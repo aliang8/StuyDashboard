@@ -1,6 +1,6 @@
 function draw() {
       var canvas = document.getElementById("canvas");
-	  canvas.addEventListener( "keypress", makeTurn, false )
+	  window.addEventListener("keydown", newTurn, false);
       if (canvas.getContext) {
           var ctx = canvas.getContext("2d");
 	  // Yellow board
@@ -38,10 +38,21 @@ function draw() {
       }
 }
 
-function newTurn(event){
-	if(event.keyCode == 13){
-		ctx.beginPath();
-		ctx.arc(60,60,42,0,2*Math.PI,false);
-		ctx.fillStyle = "#ff0000";
+function newTurn(e){
+    var ctx = document.getElementById("canvas").getContext("2d");
+	if(e.keyCode == 49){
+		animate(0,0);
 	}
+}
+
+function animate(x,y){
+	var canvas = document.getElementById('canvas');
+    var ctx = canvas.getContext('2d');
+    ctx.save();
+    ctx.clearRect(0,0,550,400);
+    ctx.fillStyle = "rgba(0,200,0,1)";
+    ctx.fillRect (x, y, 50, 50);
+    ctx.restore(); 
+    x += 1;
+    var loopTimer = setTimeout('animate('+x+','+y+')',30);
 }
