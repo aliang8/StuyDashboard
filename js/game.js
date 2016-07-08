@@ -119,6 +119,11 @@ if (canvas.getContext) {
 	ctx.fill();
 
 	ctx.restore();
+
+	inc = 1;
+	if (chip.y - inc < 560) {
+	    chip.y += inc;
+	}
     }
 
     /* ============================================
