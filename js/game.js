@@ -34,7 +34,7 @@ if (canvas.getContext) {
 	this.color = color;
     }
 
-    // Array of chips
+    // 2D Array of chips
 	var board = [];
 	for (var i = 0; i < 7; i++){
 		board[i] = [];
@@ -130,6 +130,8 @@ if (canvas.getContext) {
 	ctx.restore();
 
 	inc = 5;
+	
+	//stop when it reaches certain height
     if (chip.y + inc <= stop) {
 	    chip.y += inc;
 	}
@@ -148,11 +150,14 @@ if (canvas.getContext) {
 	// if number keys pressed, add new piece to chip array
 	if (e.keyCode >= 49 && e.keyCode <= 55){
 	    alert("Number keys pressed");
+		//checks all 6 rows 
 		for (i = 0; i < 6; i++){
+			//for the last row 
 			if(board[0][e.keyCode-49] == 0){
 				board[0][e.keyCode-49] = new ChipPiece(calculateChipXCoord(e.keyCode), 560, 42, "red");
 				animatePiece(board[0][e.keyCode-49], 560);
-			} else if (board[i][e.keyCode-49] == 0 && board[i-1][e.keyCode - 49] != 0){
+			} //for all other rows, check if its unoccupied and if the one below is occupied
+			else if (board[i][e.keyCode-49] == 0 && board[i-1][e.keyCode - 49] != 0){
 				board[i][e.keyCode-49] = new ChipPiece(calculateChipXCoord(e.keyCode), calculateChipYCoord(i), 42, "red");
 				animatePiece(board[i][e.keyCode-49], calculateChipYCoord(i));
 				console.log("hi");
@@ -173,6 +178,7 @@ if (canvas.getContext) {
     function calculateChipXCoord(keyCode) {
 		return (keyCode - 48) * 100 - 40;
     }
+	// calculates the row to put it in
 	function calculateChipYCoord(column) {
 		return 560 - column * 100;
     }
