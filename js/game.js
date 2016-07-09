@@ -37,12 +37,15 @@ if (canvas.getContext) {
 
     // 2D Array of chips
     var board = [];
-    for (i = 0; i < 7; i++){
-	board[i] = [];
-	for (j = 0; j < 7; j++) {
-	    board[i][j] = null;
+	resetGame();
+	function resetGame(){
+		 for (i = 0; i < 7; i++){
+			board[i] = [];
+			for (j = 0; j < 7; j++) {
+				board[i][j] = null;
+			}
+		}
 	}
-    }
 
 
     /* ============================================
@@ -65,6 +68,8 @@ if (canvas.getContext) {
 	ctx.strokeRect(5,610,710,25);
 	ctx.fillStyle = "#0000ff";
 	ctx.fillRect(5,610,710,25);
+	ctx.font="50px Georgia";
+	ctx.fillText("CONNECT4",300,700);
 
 	// Draws vertical lines that separate the columns
 	for(i = 10; i <= 710; i+= 100){
@@ -145,26 +150,40 @@ if (canvas.getContext) {
 
     // when a key is pressed, check if number key
     document.body.addEventListener('keydown', function(e) {
-	newTurn(e);
+	switchTurns(e);
     });
 
     var startY = 60;
     var chipRadius = 42;
+	var playerOneTurn = true;
+	var playerTwoTurn = false;
+	
+	function switchTurns(e){
+		if(playerOneTurn){
+			newTurn(e, "red");
+			playerOneTurn = false;
+			playerTwoTurn = true;
+		} else if (playerTwoTurn) {
+			newTurn(e, "black");
+			playerOneTurn = true;
+			playerTwoTurn = false;
+		}
+	}
 
-    function newTurn(e) {
+    function newTurn(e, player) {
 	// if number keys pressed, add new piece to chip array
 	if (e.keyCode >= 49 && e.keyCode <= 55){
 	    var column = e.keyCode - 49;
 	    // for the last row
 	    if( board[0][column] == null) {
-		board[0][column] = new ChipPiece(calculateChipColumn(e.keyCode), startY, 560, chipRadius, "red");
+		board[0][column] = new ChipPiece(calculateChipColumn(e.keyCode), startY, 560, chipRadius, player);
 	    }
 	    // checks the rest of the rows
 	    else {
 		for (row = 1; row < 6; row++){
 		    // for all other rows, check if its unoccupied and if the one below is occupied
 		    if (board[row][column] == null && board[row-1][column] != null){
-			board[row][column] = new ChipPiece(calculateChipColumn(e.keyCode), startY, calculateChipRow(row), chipRadius, "red");
+			board[row][column] = new ChipPiece(calculateChipColumn(e.keyCode), startY, calculateChipRow(row), chipRadius, player);
 			break;
 		    }
 		}
