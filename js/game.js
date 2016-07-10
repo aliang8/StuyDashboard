@@ -69,7 +69,11 @@ if (canvas.getContext) {
 	ctx.fillStyle = "#0000ff";
 	ctx.fillRect(5,610,710,25);
 	ctx.font="50px Georgia";
-	ctx.fillText("CONNECT4",300,700);
+	if(playerOneTurn){
+	ctx.fillText("PlayerOneTurn",300,700);
+	} else if (playerTwoTurn){
+	ctx.fillText("PlayerTwoTurn",300,700);
+	}
 
 	// Draws vertical lines that separate the columns
 	for(i = 10; i <= 710; i+= 100){
@@ -159,14 +163,16 @@ if (canvas.getContext) {
 	var playerTwoTurn = false;
 	
 	function switchTurns(e){
-		if(playerOneTurn){
-			newTurn(e, "red");
-			playerOneTurn = false;
-			playerTwoTurn = true;
-		} else if (playerTwoTurn) {
-			newTurn(e, "black");
-			playerOneTurn = true;
-			playerTwoTurn = false;
+		if (e.keyCode >= 49 && e.keyCode <= 55){
+			if(playerOneTurn){
+				newTurn(e, "red");
+				playerOneTurn = false;
+				playerTwoTurn = true;
+			} else if (playerTwoTurn) {
+				newTurn(e, "black");
+				playerOneTurn = true;
+				playerTwoTurn = false;
+			}
 		}
 	}
 
@@ -190,6 +196,33 @@ if (canvas.getContext) {
 	    }
 	}
     }
+	
+
+	for (i = 0; i < 7; i++){
+		if(checkRow(i) == true){
+			console.log("there is a winner");
+		}
+	}
+	
+	
+	function checkRow(row){
+		var counter = 0;
+		if (counter == 4){
+			return true;
+		} else {
+			for(i = 1; i < 8; i++){
+				if (board[row][i] != null || board[row][i-1] != null){
+					if (board[row][i].color == board[row][i-1].color){
+						counter += 1;
+						console.log(counter);
+					} else {
+						return false;
+						break;
+					}
+				}
+			}
+		}
+	}
 
     // Calculates which column to put it in
     // The result of (keyCode - 48) should range from 1 - 7
