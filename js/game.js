@@ -179,37 +179,37 @@ if (canvas.getContext) {
 
     function switchTurns(e){
 	if (e.keyCode >= 49 && e.keyCode <= 55){
-	    if(playerOneTurn){
-		newTurn(e, "red");
-		playerOneTurn = false;
-		playerTwoTurn = true;
+	    if (playerOneTurn){
+		if (newTurn(e, "red")) {
+		    playerOneTurn = false;
+		    playerTwoTurn = true;
+		}
 	    } else if (playerTwoTurn) {
-		newTurn(e, "black");
-		playerOneTurn = true;
-		playerTwoTurn = false;
+		if (newTurn(e, "black")) {
+		    playerOneTurn = true;
+		    playerTwoTurn = false;
+		}
 	    }
 	}
     }
 
     function newTurn(e, player) {
-	// if number keys pressed, add new piece to chip array
-	if (e.keyCode >= 49 && e.keyCode <= 55){
-	    var column = e.keyCode - 49;
-	    // checks the rows to see if there are any spots
-	    for (row = 0; row < 5; row++){
-		if (board[row][column] == null && board[row+1][column] == null){
-		    board[row][column] = new ChipPiece(calculateChipColumn(e.keyCode), startY, calculateChipRow(row), chipRadius, player);
-		    if(player == "red"){
-			stringBoard[row][column] = "R";
-		    } else if(player == "black"){
-			stringBoard[row][column] = "B";
-		    }
-		    checkForWinnerHorizontal(row);
-		    checkForWinnerVertical(column);
-		    break;
+	var column = e.keyCode - 49;
+	// checks the rows to see if there are any spots
+	for (row = 0; row < 6; row++){
+	    if (board[row][column] == null){
+		board[row][column] = new ChipPiece(calculateChipColumn(e.keyCode), startY, calculateChipRow(row), chipRadius, player);
+		if (player == "red"){
+		    stringBoard[row][column] = "R";
+		} else if(player == "black"){
+		    stringBoard[row][column] = "B";
 		}
+		checkForWinnerHorizontal(row);
+		checkForWinnerVertical(column);
+		return true;
 	    }
 	}
+	return false; // returning false means that column is full
     }
 
     function checkForWinnerHorizontal(row){
