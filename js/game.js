@@ -206,7 +206,10 @@ if (canvas.getContext) {
 		}
 		checkForWinnerHorizontal(row);
 		checkForWinnerVertical(column);
+		checkForWinnerDiagonalBackSlash(row,column);
+		checkForWinnerDiagonalForwardSlash(row,column);
 		return true;
+		
 	    }
 	}
 	return false; // returning false means that column is full
@@ -236,6 +239,49 @@ if (canvas.getContext) {
 	}
     }
 
+    function checkForWinnerDiagonalBackSlash(row,column){
+	var string = "";
+	var counter = row - 1;
+	var ccounter = column + 1;
+	while(row < 6 && column >= 0){
+	    string+= stringBoard[row][column];
+	    row++;
+	    column--;
+	}
+	string = string.split("").reverse().join("");
+	while(counter >= 0 && ccounter <= 6){
+	    string+= stringBoard[counter][ccounter];
+	    counter--;
+	    ccounter++;
+	}
+	if (string.includes("RRRR")){
+	    console.log("Red wins");
+	} else if(string.includes("BBBB")){
+	    console.log("Black wins");
+	}
+    }
+    function checkForWinnerDiagonalForwardSlash(row,column){
+	var string = "";
+	var counter = row - 1;
+	var ccounter = column - 1;
+	while(row <= 5 && column <= 6){
+	    string+= stringBoard[row][column];
+	    row++;
+	    column++;
+	}
+	string = string.split("").reverse().join("");
+	while(counter >= 0 && ccounter >= 0){
+	    string+= stringBoard[counter][ccounter];
+	    counter--;
+	    ccounter--;
+	}
+	if (string.includes("RRRR")){
+	    console.log("Red wins");
+	} else if(string.includes("BBBB")){
+	    console.log("Black wins");
+	}
+    }
+    
     // Calculates which column to put it in
     // The result of (keyCode - 48) should range from 1 - 7
     // Since we already know that 49 <= e.keycode <= 55
