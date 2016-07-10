@@ -37,29 +37,29 @@ if (canvas.getContext) {
 
     // 2D Array of chips
     var board = [];
-	resetGame();
-	function resetGame(){
-		 for (i = 0; i < 6; i++){
-			board[i] = [];
-			for (j = 0; j < 7; j++) {
-				board[i][j] = null;
-			}
-		}
-	}
-	
-	var stringBoard = [];
+    // String version of board
+    var stringBoard = [];
+
+    resetGame();
+
+    function resetGame(){
 	for (i = 0; i < 6; i++){
-		stringBoard[i] = [];
-		for (j = 0; j < 7; j++){
-			if(board[i][j] == null){
-				stringBoard[i][j] = "N";
-			} else if(board[i][j].color == "red"){
-				stringBoard[i][j] = "R";
-			} else if (board[i][j].color == "black"){
-				stringBoard[i][j] = "B";
-			} 
-		}
+	    board[i] = [];
+	    for (j = 0; j < 7; j++) {
+		board[i][j] = null;
+	    }
 	}
+	resetStringBoard();
+    }
+
+    function resetStringBoard() {
+	for (i = 0; i < 6; i++){
+	    stringBoard[i] = [];
+	    for (j = 0; j < 7; j++){
+		stringBoard[i][j] = "N";
+	    }
+	}
+    }
 
 
     /* ============================================
@@ -83,10 +83,11 @@ if (canvas.getContext) {
 	ctx.fillStyle = "#0000ff";
 	ctx.fillRect(5,610,710,25);
 	ctx.font="50px Georgia";
+	// Display whose turn it is
 	if(playerOneTurn){
-	ctx.fillText("Red",200,700);
+	    ctx.fillText("Red",200,700);
 	} else if (playerTwoTurn){
-	ctx.fillText("Black",200,700);
+	    ctx.fillText("Black",200,700);
 	}
 
 	// Draws vertical lines that separate the columns
@@ -132,7 +133,7 @@ if (canvas.getContext) {
 	    	}
 	    }
 	}
-	
+
 	// Redraw animation
 	requestAnimationFrame(draw);
     }
@@ -173,83 +174,68 @@ if (canvas.getContext) {
 
     var startY = 60;
     var chipRadius = 42;
-	var playerOneTurn = true;
-	var playerTwoTurn = false;
-	
-	function switchTurns(e){
-		if (e.keyCode >= 49 && e.keyCode <= 55){
-			if(playerOneTurn){
-				newTurn(e, "red");
-				playerOneTurn = false;
-				playerTwoTurn = true;
-			} else if (playerTwoTurn) {
-				newTurn(e, "black");
-				playerOneTurn = true;
-				playerTwoTurn = false;
-			}
-		}
+    var playerOneTurn = true;
+    var playerTwoTurn = false;
+
+    function switchTurns(e){
+	if (e.keyCode >= 49 && e.keyCode <= 55){
+	    if(playerOneTurn){
+		newTurn(e, "red");
+		playerOneTurn = false;
+		playerTwoTurn = true;
+	    } else if (playerTwoTurn) {
+		newTurn(e, "black");
+		playerOneTurn = true;
+		playerTwoTurn = false;
+	    }
 	}
+    }
 
     function newTurn(e, player) {
 	// if number keys pressed, add new piece to chip array
 	if (e.keyCode >= 49 && e.keyCode <= 55){
 	    var column = e.keyCode - 49;
-	    // for the last row
-	    if( board[0][column] == null) {
-		board[0][column] = new ChipPiece(calculateChipColumn(e.keyCode), startY, 560, chipRadius, player);
-		if(player == "red"){
-			stringBoard[0][column] = "R";
-		} else if(player == "black"){
-			stringBoard[0][column] = "B";
-		}
-		checkForWinnerHorizontal(0);
-		checkForWinnerVertical(column);
-	    }
-	    // checks the rest of the rows
-	    else {
-		for (row = 1; row < 6; row++){
-		    // for all other rows, check if its unoccupied and if the one below is occupied
-		    if (board[row][column] == null && board[row-1][column] != null){
-			board[row][column] = new ChipPiece(calculateChipColumn(e.keyCode), startY, calculateChipRow(row), chipRadius, player);
-			if(player == "red"){
+	    // checks the rows to see if there are any spots
+	    for (row = 0; row < 5; row++){
+		if (board[row][column] == null && board[row+1][column] == null){
+		    board[row][column] = new ChipPiece(calculateChipColumn(e.keyCode), startY, calculateChipRow(row), chipRadius, player);
+		    if(player == "red"){
 			stringBoard[row][column] = "R";
-			} else if(player == "black"){
-				stringBoard[row][column] = "B";
-			}
-			checkForWinnerHorizontal(row);
-			checkForWinnerVertical(column);
-			break;
+		    } else if(player == "black"){
+			stringBoard[row][column] = "B";
 		    }
+		    checkForWinnerHorizontal(row);
+		    checkForWinnerVertical(column);
+		    break;
 		}
 	    }
 	}
     }
-	
-	function checkForWinnerHorizontal(row){
-		var string = "";
-		for(i = 0; i < stringBoard[row].length; i++){
-			string+= stringBoard[row][i];
-		}
-		if (string.includes("RRRR")){
-			console.log("Red wins");
-		} else if(string.includes("BBBB")){
-			console.log("Black wins");
-		}
+
+    function checkForWinnerHorizontal(row){
+	var string = "";
+	for(i = 0; i < stringBoard[row].length; i++){
+	    string += stringBoard[row][i];
 	}
-	
-	function checkForWinnerVertical(column){
-		var string = "";
-		for(i = 0; i < 6; i++){
-			string+= stringBoard[i][column];
-		}
-		console.log(string);
-		if (string.includes("RRRR")){
-			console.log("Red wins");
-		} else if(string.includes("BBBB")){
-			console.log("Black wins");
-		}
+	if (string.includes("RRRR")){
+	    console.log("Red wins");
+	} else if(string.includes("BBBB")){
+	    console.log("Black wins");
 	}
-	
+    }
+
+    function checkForWinnerVertical(column){
+	var string = "";
+	for(i = 0; i < stringBoard.length; i++){
+	    string += stringBoard[i][column];
+	}
+	if (string.includes("RRRR")){
+	    console.log("Red wins");
+	} else if(string.includes("BBBB")){
+	    console.log("Black wins");
+	}
+    }
+
     // Calculates which column to put it in
     // The result of (keyCode - 48) should range from 1 - 7
     // Since we already know that 49 <= e.keycode <= 55
