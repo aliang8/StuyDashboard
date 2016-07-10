@@ -220,11 +220,7 @@ if (canvas.getContext) {
 	for(i = 0; i < stringBoard[row].length; i++){
 	    string += stringBoard[row][i];
 	}
-	if (string.includes("RRRR")){
-	    console.log("Red wins");
-	} else if(string.includes("BBBB")){
-	    console.log("Black wins");
-	}
+	fourInARow(string);
     }
 
     function checkForWinnerVertical(column){
@@ -232,11 +228,7 @@ if (canvas.getContext) {
 	for(i = 0; i < stringBoard.length; i++){
 	    string += stringBoard[i][column];
 	}
-	if (string.includes("RRRR")){
-	    console.log("Red wins");
-	} else if(string.includes("BBBB")){
-	    console.log("Black wins");
-	}
+	fourInARow(string);
     }
 
     function checkForWinnerDiagonalBackSlash(row,column){
@@ -254,11 +246,7 @@ if (canvas.getContext) {
 	    counter--;
 	    ccounter++;
 	}
-	if (string.includes("RRRR")){
-	    console.log("Red wins");
-	} else if(string.includes("BBBB")){
-	    console.log("Black wins");
-	}
+	fourInARow(string);
     }
     function checkForWinnerDiagonalForwardSlash(row,column){
 	var string = "";
@@ -275,10 +263,14 @@ if (canvas.getContext) {
 	    counter--;
 	    ccounter--;
 	}
+	fourInARow(string);
+    }
+
+    function fourInARow(string){
 	if (string.includes("RRRR")){
-	    console.log("Red wins");
+	    alert("Red wins");
 	} else if(string.includes("BBBB")){
-	    console.log("Black wins");
+	    alert("Black wins");
 	}
     }
     
