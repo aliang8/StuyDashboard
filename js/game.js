@@ -39,11 +39,25 @@ if (canvas.getContext) {
     var board = [];
 	resetGame();
 	function resetGame(){
-		 for (i = 0; i < 7; i++){
+		 for (i = 0; i < 6; i++){
 			board[i] = [];
 			for (j = 0; j < 7; j++) {
 				board[i][j] = null;
 			}
+		}
+	}
+	
+	var stringBoard = [];
+	for (i = 0; i < 6; i++){
+		stringBoard[i] = [];
+		for (j = 0; j < 7; j++){
+			if(board[i][j] == null){
+				stringBoard[i][j] = "N";
+			} else if(board[i][j].color == "red"){
+				stringBoard[i][j] = "R";
+			} else if (board[i][j].color == "black"){
+				stringBoard[i][j] = "B";
+			} 
 		}
 	}
 
@@ -70,9 +84,9 @@ if (canvas.getContext) {
 	ctx.fillRect(5,610,710,25);
 	ctx.font="50px Georgia";
 	if(playerOneTurn){
-	ctx.fillText("PlayerOneTurn",300,700);
+	ctx.fillText("Red",200,700);
 	} else if (playerTwoTurn){
-	ctx.fillText("PlayerTwoTurn",300,700);
+	ctx.fillText("Black",200,700);
 	}
 
 	// Draws vertical lines that separate the columns
@@ -118,7 +132,7 @@ if (canvas.getContext) {
 	    	}
 	    }
 	}
-
+	
 	// Redraw animation
 	requestAnimationFrame(draw);
     }
@@ -183,6 +197,13 @@ if (canvas.getContext) {
 	    // for the last row
 	    if( board[0][column] == null) {
 		board[0][column] = new ChipPiece(calculateChipColumn(e.keyCode), startY, 560, chipRadius, player);
+		if(player == "red"){
+			stringBoard[0][column] = "R";
+		} else if(player == "black"){
+			stringBoard[0][column] = "B";
+		}
+		checkForWinnerHorizontal(0);
+		checkForWinnerVertical(column);
 	    }
 	    // checks the rest of the rows
 	    else {
@@ -190,6 +211,13 @@ if (canvas.getContext) {
 		    // for all other rows, check if its unoccupied and if the one below is occupied
 		    if (board[row][column] == null && board[row-1][column] != null){
 			board[row][column] = new ChipPiece(calculateChipColumn(e.keyCode), startY, calculateChipRow(row), chipRadius, player);
+			if(player == "red"){
+			stringBoard[row][column] = "R";
+			} else if(player == "black"){
+				stringBoard[row][column] = "B";
+			}
+			checkForWinnerHorizontal(row);
+			checkForWinnerVertical(column);
 			break;
 		    }
 		}
@@ -197,33 +225,31 @@ if (canvas.getContext) {
 	}
     }
 	
-
-	for (i = 0; i < 7; i++){
-		if(checkRow(i) == true){
-			console.log("there is a winner");
+	function checkForWinnerHorizontal(row){
+		var string = "";
+		for(i = 0; i < stringBoard[row].length; i++){
+			string+= stringBoard[row][i];
+		}
+		if (string.includes("RRRR")){
+			console.log("Red wins");
+		} else if(string.includes("BBBB")){
+			console.log("Black wins");
 		}
 	}
 	
-	
-	function checkRow(row){
-		var counter = 0;
-		if (counter == 4){
-			return true;
-		} else {
-			for(i = 1; i < 8; i++){
-				if (board[row][i] != null || board[row][i-1] != null){
-					if (board[row][i].color == board[row][i-1].color){
-						counter += 1;
-						console.log(counter);
-					} else {
-						return false;
-						break;
-					}
-				}
-			}
+	function checkForWinnerVertical(column){
+		var string = "";
+		for(i = 0; i < 6; i++){
+			string+= stringBoard[i][column];
+		}
+		console.log(string);
+		if (string.includes("RRRR")){
+			console.log("Red wins");
+		} else if(string.includes("BBBB")){
+			console.log("Black wins");
 		}
 	}
-
+	
     // Calculates which column to put it in
     // The result of (keyCode - 48) should range from 1 - 7
     // Since we already know that 49 <= e.keycode <= 55
