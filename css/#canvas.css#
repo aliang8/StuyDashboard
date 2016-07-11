@@ -1,8 +1,12 @@
 #canvas{
 	background-color: #f1f1f1;
 	border: 1px solid #d3d3d3;
-	margin-top:100px;
+	margin-to
 	margin-left:400px;
 }
 
-#inst}
+#instructions{
+	display: inline;
+	background-color: #f1f1f1;
+        border: 1px solid #d3d3d3;	
+}

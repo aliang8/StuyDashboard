@@ -6,7 +6,7 @@
 </head>
 <title>Chinese Checkers</title>
 <body>
-  <canvas id= "canvas" width = "800" height = "850"></canvas>
+  <canvas id= "canvas" width = "800" height = "800"></canvas>
   <button type = "button" onclick = "resetGame()">Reset</button>
   <script type = "text/javascript" src= "js/cc.js"></script>
 </body>
