@@ -1,0 +1,6 @@
+# .gitignore contains a list of file types that will not be added to GitHub when pushing files
+
+# The ~ means that the file is a backup file, which is useful if a source file is lost. However, it should not be added to GitHub.
+*.*~
+
+.DS_Store
